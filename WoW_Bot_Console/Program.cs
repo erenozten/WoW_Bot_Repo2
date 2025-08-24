@@ -13,6 +13,25 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("8 sn hazırlık süresi... oyuna geçebilirsin.");
+
+        // === TEST: Maus sağa sola hareket ===
+        var mp = new MousePlayer();
+        var cur = mp.GetCursor();
+
+        for (int i = 0; i < 3; i++)
+        {
+            // 100 px sağa
+            var right = (cur.X + 100, cur.Y);
+            mp.MoveHumanLike(cur, right, 600);
+            Thread.Sleep(500);
+
+            // geri sola
+            mp.MoveHumanLike(right, cur, 600);
+            Thread.Sleep(500);
+        }
+        // === TEST BİTTİ ===
+
+
         Thread.Sleep(8000);   // <- burada bekliyor
 
         if (args.Length == 0)
@@ -93,7 +112,7 @@ class Program
         Thread.Sleep(Random.Shared.Next(40, 140));
         mp.ClickLeft();
 
-        Console.WriteLine("Bitti.");
+        Console.WriteLine("Bitti.-----------------------------------");
     }
 
     // --- Mouse & Keyboard helpers ---
