@@ -7,11 +7,12 @@ static class Keyboard
     {
         if (OperatingSystem.IsWindows())
         {
-            WindowsKeyboard.TapWithShiftScan(0x09); // 8 tuşu
+            WindowsKeyboard.TapScanCode(0x37); // Numpad '*'
             return;
         }
         throw new PlatformNotSupportedException("Sadece Windows için eklendi.");
     }
+
 
     // '0' için üst sıra (scan code 0x0B)
     public static void TapDigit0()
