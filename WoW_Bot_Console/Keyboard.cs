@@ -1,46 +1,48 @@
+using System;
+
 static class Keyboard
 {
-    // '*' için iki seçenek: Numpad '*' (VK_MULTIPLY) veya Shift+8
-    public static void TapStar(bool preferNumpad = false)
+    // '*' için Shift+8 (scan code 0x09)
+    public static void TapStar()
     {
         if (OperatingSystem.IsWindows())
         {
-            if (preferNumpad) WindowsKeyboard.TapVk(0x6A);           // VK_MULTIPLY
-            else WindowsKeyboard.TapWithShift(0x38);                 // '8' + Shift  (VK_8)
+            WindowsKeyboard.TapWithShiftScan(0x09); // 8 tuşu
             return;
         }
-        throw new PlatformNotSupportedException("Klavye P/Invoke sadece Windows için eklendi.");
+        throw new PlatformNotSupportedException("Sadece Windows için eklendi.");
     }
 
-    // '0' (üst sıra)
+    // '0' için üst sıra (scan code 0x0B)
     public static void TapDigit0()
     {
-        if (OperatingSystem.IsWindows()) { WindowsKeyboard.TapVk(0x30); return; } // VK_0
-        throw new PlatformNotSupportedException("Klavye P/Invoke sadece Windows için eklendi.");
+        if (OperatingSystem.IsWindows())
+        {
+            WindowsKeyboard.TapScanCode(0x0B);
+            return;
+        }
+        throw new PlatformNotSupportedException("Sadece Windows için eklendi.");
     }
 
-    // İstersen tek tek harf/rakam göndermek için:
-    public static void TapChar(char c)
+    // O harfi (scan code 0x18)
+    public static void TapO()
     {
-        if (!OperatingSystem.IsWindows())
-            throw new PlatformNotSupportedException("Klavye P/Invoke sadece Windows için eklendi.");
-
-        byte vk = c switch
+        if (OperatingSystem.IsWindows())
         {
-            '0' => 0x30,
-            '1' => 0x31,
-            '2' => 0x32,
-            '3' => 0x33,
-            '4' => 0x34,
-            '5' => 0x35,
-            '6' => 0x36,
-            '7' => 0x37,
-            '8' => 0x38,
-            '9' => 0x39,
-            _ => throw new NotSupportedException($"Desteklenmeyen karakter: {c}")
-        };
-        WindowsKeyboard.TapVk(vk);
+            WindowsKeyboard.TapScanCode(0x18);
+            return;
+        }
+        throw new PlatformNotSupportedException("Sadece Windows için eklendi.");
+    }
+
+    // P harfi (scan code 0x19)
+    public static void TapP()
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            WindowsKeyboard.TapScanCode(0x19);
+            return;
+        }
+        throw new PlatformNotSupportedException("Sadece Windows için eklendi.");
     }
 }
-
-

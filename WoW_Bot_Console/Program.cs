@@ -6,16 +6,48 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.WriteLine("3 sn hazırlık süresi... oyuna geçebilirsin.");
+        Console.WriteLine("4 sn hazırlık süresi... oyuna geçebilirsin.");
         await Task.Delay(TimeSpan.FromSeconds(3));
 
-        // --- Klavye testi: '*' sonra '0' ---
-        await Task.Delay(300);            // minik gecikme
-        Keyboard.TapStar(preferNumpad: false); // false = Shift+8; true = Numpad '*'
+        Console.WriteLine("3 sn hazırlık süresi... Notepad'e geç!");
+        await Task.Delay(3000);
+
+        Keyboard.TapO();
+        await Task.Delay(120);
+        Keyboard.TapP();
+        await Task.Delay(120);
+        Keyboard.TapO();
+        await Task.Delay(120);
+        Keyboard.TapP();
+
+        Console.WriteLine("Bitti. Notepad'e O P O P yazması lazım.");
+
+        Console.WriteLine("Bitti. Notepad’e O P O P yazması lazım.");
+
+        // --- Klavye testi: O ve P ---
+
+        // --- Klavye testi: '*' sonra '0 0 0' ---
+        await Task.Delay(50);
+        Keyboard.TapO();
+        await Task.Delay(120);
+        Keyboard.TapP();
+        await Task.Delay(120);
+        Keyboard.TapO();
+        await Task.Delay(120);
+        Keyboard.TapP();
+
+        Console.WriteLine("Klavyeden: O ve P basıldı.");
+
+        await Task.Delay(300);
+        Keyboard.TapStar();          // artık parametresiz
         await Task.Delay(120);
         Keyboard.TapDigit0();
-        Console.WriteLine("Klavyeden: '*' ve ardından '0' basıldı.");
+        await Task.Delay(120);
+        Keyboard.TapDigit0();
+        await Task.Delay(120);
+        Keyboard.TapDigit0();
 
+        Console.WriteLine("Klavyeden: '*' ve ardından '0 0 0' basıldı.");
 
         try
         {
@@ -39,6 +71,7 @@ class Program
         {
             Console.WriteLine(ex);
         }
+        Console.ReadKey();
     }
 }
 
